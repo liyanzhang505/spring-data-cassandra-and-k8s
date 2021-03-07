@@ -1,0 +1,32 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id("com.palantir.docker") version "0.22.1"
+}
+
+
+docker {
+    dependsOn build
+    name = "qiusuo/cassandra-demo:".plus("v1")
+    copySpec.from("build").into("build")
+    setDockerfile(file("docker/Dockerfile"))
+}
+
+group = 'com.lean'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.data:spring-data-cassandra:3.1.5'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+
+test {
+    useJUnitPlatform()
+}

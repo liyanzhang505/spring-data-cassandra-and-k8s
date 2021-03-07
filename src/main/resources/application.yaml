@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: qiusuo-cassandra-test
+  data:
+    cassandra:
+      contact-points: 127.0.0.1
+#      contact-points: cassandra
+      key-space: my_test2
+
+basic:
+  load-balancing-policy:
+    local-datacenter: datacenter1
+#    local-datacenter: DC1-K8Demo
+
+
+server:
+  port: 8090
